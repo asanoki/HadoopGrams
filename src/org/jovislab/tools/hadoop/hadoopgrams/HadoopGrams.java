@@ -15,8 +15,7 @@ public class HadoopGrams extends Configured implements Tool {
 
 	public int run(String[] args) throws Exception {
 		if (args.length < 3) {
-			System.out
-					.println("Usage: bin/hadoop jar HadoopGrams.jar org.jovislab.tools.hadoop.hadoopgrams.HadoopGrams <input_file> <output_file> <n> [<filter_class>] [<combiner_threshold>] [<reducer_threshold>]");
+			System.out.println("Usage: bin/hadoop jar HadoopGrams.jar org.jovislab.tools.hadoop.hadoopgrams.HadoopGrams <input_file> <output_file> <n> [<filter_class>] [<combiner_threshold>] [<reducer_threshold>]");
 			return -1;
 		}
 
