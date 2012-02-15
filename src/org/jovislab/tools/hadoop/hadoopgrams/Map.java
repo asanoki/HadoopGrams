@@ -37,6 +37,7 @@ public class Map extends Mapper<LongWritable, Text, Text, LongWritable> {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("Filter: " + filter.getClass().getName());
 		configN = config.getInt("n", 2);
 	}
 
@@ -44,10 +45,12 @@ public class Map extends Mapper<LongWritable, Text, Text, LongWritable> {
 	protected void map(LongWritable key, Text value,
 			Mapper<LongWritable, Text, Text, LongWritable>.Context context)
 			throws java.io.IOException, InterruptedException {
-		String processed = filter.filter(value.toString());
+		String string = value.toString();
+		String processed = filter.filter(string);
+		int original_size = string.length();
 		int size = processed.length();
 		context.getCounter(Counters.NUM_GRAMS_BEFORE_FILTERING).increment(
-				value.getLength() - configN);
+				original_size - configN);
 		context.getCounter(Counters.NUM_GRAMS_AFTER_FILTERING).increment(
 				size - configN);
 		for (int i = 0; i < size - configN; i++) {

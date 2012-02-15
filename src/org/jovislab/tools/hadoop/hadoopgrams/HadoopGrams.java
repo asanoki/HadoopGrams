@@ -31,8 +31,9 @@ public class HadoopGrams extends Configured implements Tool {
 		Configuration config = job.getConfiguration();
 		config.setInt("n", Integer.parseInt(args[2]));
 		if (args.length >= 4) {
-			config.setClass("filter.class", Class.forName(args[3]),
-					Filter.class);
+			config.setClass("map.filter", Class.forName(args[3]), Filter.class);
+			// System.out.println("filter.class=" +
+			// Class.forName(args[3]).getName());
 		}
 		if (args.length >= 5) {
 			config.setInt("combine.threshold", Integer.parseInt(args[4]));
